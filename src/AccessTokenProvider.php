@@ -6,7 +6,7 @@ class AccessTokenProvider
 {
 
     /**
-     * Get a refresh Token using your clientId and clientSecret here : https://developers.google.com/oauthplayground
+     * Get a Refresh Token using your Client Id and Client Secret here : https://developers.google.com/oauthplayground
      *
      * @throws AuthException
      */
