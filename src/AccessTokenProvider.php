@@ -46,4 +46,12 @@ class AccessTokenProvider
 
         return $jsonResponse['access_token'];
     }
+
+    /**
+     * @throws AuthException
+     */
+    public function getFromClient(GoogleClient $client): string
+    {
+        return $this->get($client->clientId, $client->clientSecret, $client->refreshToken);
+    }
 }
