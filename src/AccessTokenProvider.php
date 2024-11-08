@@ -35,7 +35,17 @@ class AccessTokenProvider
         $jsonResponse = json_decode($curlResult, true);
 
         if (! empty($jsonResponse['error'])) {
-            $apiError = 'Error ' . $jsonResponse['error']['code'] . ': ' . $jsonResponse['error']['message'];
+            $error = $jsonResponse['error'];
+
+            if (is_array($error)) {
+                $apiError = 'Error ' . $error['code'] . ': ' . $error['message'];
+            } else {
+                $apiError = $error;
+
+                if (! empty($jsonResponse['error_description'])) {
+                    $apiError .= ' - ' . $jsonResponse['error_description'];
+                }
+            }
 
             throw new AuthException($apiError);
         }
